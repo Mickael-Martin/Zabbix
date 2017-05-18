@@ -1,0 +1,6 @@
+#By Mickael Martin
+To extend zabbix frontend : add maintenance in one step.
+1. Autocompléte with the name or display name of the host
+2. Select period of maintenance
+
+Result : The maintenance starts now for the period.
