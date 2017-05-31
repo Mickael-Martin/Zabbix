@@ -23,10 +23,10 @@ if (!empty($_POST["host"])){
 		'limit' => 1
 	));
 	$now=time();
-	$tomorrow=time() + 86400 ;
+	$tomorrow=time() + $period; ;
 	$hostid=$hosts[0]['hostid'];
 	$maintenance=array(
-		'name' => "Maintenance One Clic on $name for ".$_POST["time"]." seconds",
+		'name' => "Maintenance One Clic on $name for ".$_POST["time"]." seconds (".date('Y-m-d H:i:s',$now).")",
 		'active_since' => "$now",
 		'active_till' => "$tomorrow",
 		'maintenance_type' => 0,
