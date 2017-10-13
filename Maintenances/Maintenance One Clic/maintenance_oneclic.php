@@ -18,8 +18,9 @@ if (!empty($_POST["host"])){
 	$name=$_POST["host"];
 	$period=$_POST["time"];
 	$hosts = API::Host()->get(array(
-		'filter' => array('host' => $name),
+		'filter' => array('host' => $name,'name' => $name),
 		'output' => array('hostid'),
+		'searchByAny' => 1,
 		'limit' => 1
 	));
 	$now=time();
