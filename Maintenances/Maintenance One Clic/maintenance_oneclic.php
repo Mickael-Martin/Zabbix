@@ -75,7 +75,7 @@ if (!empty($_POST["host"])){
 	//echo "<pre>";var_dump($maintenance);echo "</pre>";
 	$result = API::Maintenance()->create($maintenance);
 	if (!empty($result['maintenanceids'][0])){
-		echo "Maintenance succefully added : <a href='http://zabbix24/zabbix/maintenance.php?form=update&maintenanceid=".$result['maintenanceids'][0]."'>Maintenance ".$result['maintenanceids'][0]." </a>"
+		echo "Maintenance succefully added : <a href='http://zabbix/zabbix/maintenance.php?form=update&maintenanceid=".$result['maintenanceids'][0]."'>Maintenance ".$result['maintenanceids'][0]." </a>"
 			;
 	}else
 	{
