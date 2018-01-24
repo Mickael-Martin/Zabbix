@@ -1,4 +1,4 @@
- <?php
+<?php
 header( 'content-type: text/html; charset=iso-8859-1' );
 	if(isset($_POST['csv']))
    {
@@ -15,7 +15,7 @@ header( 'content-type: text/html; charset=iso-8859-1' );
 	
 	$str='<?xml version="1.0" encoding="UTF-8"?>'."
 <zabbix_export>
-    <version>2.0</version>
+    <version>3.4</version>
     <groups>
         <group>
             <name>".$_POST["groupTemplate"]."</name>
@@ -46,17 +46,15 @@ header( 'content-type: text/html; charset=iso-8859-1' );
                     <name>State of service ".trim($line[1])."</name>
                     <type>0</type>
                     <snmp_community/>
-                    <multiplier>0</multiplier>
                     <snmp_oid/>
                     <key>service_state[".trim($line[0])."]</key>
                     <delay>300</delay>
-                    <history>30</history>
-                    <trends>90</trends>
+                    <history>30d</history>
+                    <trends>90d</trends>
                     <status>0</status>
                     <value_type>3</value_type>
                     <allowed_hosts/>
                     <units/>
-                    <delta>0</delta>
                     <snmpv3_contextname/>
                     <snmpv3_securityname/>
                     <snmpv3_securitylevel>0</snmpv3_securitylevel>
@@ -64,11 +62,8 @@ header( 'content-type: text/html; charset=iso-8859-1' );
                     <snmpv3_authpassphrase/>
                     <snmpv3_privprotocol>0</snmpv3_privprotocol>
                     <snmpv3_privpassphrase/>
-                    <formula>1</formula>
-                    <delay_flex/>
                     <params/>
                     <ipmi_sensor/>
-                    <data_type>0</data_type>
                     <authtype>0</authtype>
                     <username/>
                     <password/>
@@ -85,7 +80,10 @@ header( 'content-type: text/html; charset=iso-8859-1' );
                     <valuemap>
                                 <name>Windows service state</name>
                     </valuemap>
+		    <preprocessing/>
+                    <jmx_endpoint/>
                     <logtimefmt/>
+	            <master_item/>
                 </item>
 	";
 	$str.=$strItem;
@@ -150,12 +148,17 @@ header( 'content-type: text/html; charset=iso-8859-1' );
         $strTrigger="
         <trigger>
             <expression>{".$_POST["nameTemplate"].":service_state[".trim($line[0])."].count(#2,0,&quot;ne&quot;)}=2</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
             <name>Service ".trim($line[1])." is {ITEM.LASTVALUE}</name>
+   	    <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
             <url/>
             <status>0</status>
             <priority>4</priority>
             <description/>
             <type>0</type>
+            <manual_close>0</manual_close>
             <dependencies/>
 	   <tags>
                  <tag>
