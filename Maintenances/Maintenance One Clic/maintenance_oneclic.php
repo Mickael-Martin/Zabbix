@@ -17,6 +17,7 @@
  ** along with this program; if not, write to the Free Software
  ** Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  ** by mma 20170904 v3.2
+ ** updated mma 20190726 for zabbix v4.2
  **/
 
 
@@ -39,7 +40,7 @@ error_reporting(E_ALL);
 ini_set("display_errors", 1);
 
 
-if (!empty($_POST["host"])){
+if (!empty($_POST["host"]) && !empty($_POST["time"])){
         $name=$_POST["host"];
         $period=$_POST["time"];
         $description=$_POST["description"];
@@ -100,7 +101,7 @@ if (!empty($_POST["host"])){
 <div id="maintenanceTab" aria-labelledby="tab_maintenanceTab" class="ui-tabs-panel ui-widget-content ui-corner-bottom" role="tabpanel" aria-expanded="true" aria-hidden="false">
 <ul class="table-forms" id="maintenanceFormList">
 <li><div class="table-forms-td-left">
-<label for="host">Host </label>
+<label class="form-label-asterisk" for="host">Host </label>
 </div>
 <div class="table-forms-td-right">
 <input list="host" type="text" name="host" size="50" autocomplete="off">
@@ -124,7 +125,7 @@ foreach($arr_hosts as $name){
 </datalist>
 <li>
         <div class="table-forms-td-left">
-                <label for="time">Time </label>
+                <label class="form-label-asterisk" for="time">Time </label>
         </div>
         <div class="table-forms-td-right">
                 <select id="time" name="time">
