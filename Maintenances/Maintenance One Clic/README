@@ -4,3 +4,4 @@ To extend zabbix frontend : add maintenance in one step.
 2. Select period of maintenance
 
 Result : The maintenance starts now for the period.
+Tested for zabbix 4.2
